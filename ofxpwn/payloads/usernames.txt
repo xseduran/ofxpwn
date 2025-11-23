@@ -1,0 +1,38 @@
+# Common usernames for OFX systems
+
+# Admin accounts
+admin
+administrator
+root
+sysadmin
+dbadmin
+ofxadmin
+
+# Service accounts
+service
+support
+backup
+monitor
+audit
+
+# Software-specific
+quicken
+quickbooks
+qwin
+money
+ofx
+intuit
+
+# Test accounts
+test
+test1
+test2
+testuser
+demo
+guest
+
+# Generic
+user
+client
+customer
+account

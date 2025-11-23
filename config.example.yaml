@@ -1,0 +1,201 @@
+# OFXpwn Configuration File
+# Copy this file and customize for your target
+
+# Target OFX Server Configuration
+target:
+  # OFX server URL (required)
+  url: "https://ofx.example.com/OFXServer/ofxsrvr.dll"
+
+  # Financial Institution Organization name (optional but recommended)
+  # Find in Intuit FI directory: https://ofx-prod-filist.intuit.com/qw2800/data/fidir.txt
+  org: "EXAMPLEBANK"
+
+  # Financial Institution ID (optional but recommended)
+  # Find in Intuit FI directory: https://ofx-prod-filist.intuit.com/qw2800/data/fidir.txt
+  fid: "12345"
+
+  # Additional institution identifiers (rarely needed)
+  broker_id: ""
+  institution_id: ""
+
+# HTTP Proxy Configuration (for Burp Suite, etc.)
+proxy:
+  # Enable/disable proxy
+  enabled: false
+
+  # Proxy URL
+  url: "http://127.0.0.1:8080"
+
+  # SSL verification (set false for self-signed certs in proxy)
+  verify_ssl: false
+
+# Credentials for authenticated testing
+credentials:
+  # Credentials file path (format: username:password)
+  file: "creds.txt"
+
+  # Or specify directly (will override file)
+  username: ""
+  password: ""
+  clientuid: ""  # Optional UUID for Quicken-like apps
+
+# Output Configuration
+output:
+  # Base output directory
+  directory: "./output"
+
+  # Save HTTP requests
+  save_requests: true
+
+  # Save HTTP responses
+  save_responses: true
+
+  # Save only unique responses (by hash)
+  save_unique_only: true
+
+  # Subdirectories
+  logs_dir: "./output/logs"
+  reports_dir: "./output/reports"
+  evidence_dir: "./output/evidence"
+
+# Logging Configuration
+logging:
+  # Log level: DEBUG, INFO, WARN, ERROR
+  level: "INFO"
+
+  # Console output
+  console: true
+  console_color: true
+
+# Testing Configuration
+testing:
+  # Maximum concurrent threads
+  max_threads: 50
+
+  # Request timeout (seconds)
+  timeout: 30
+
+  # Rate limiting (requests per second, 0 = unlimited)
+  rate_limit: 0
+
+  # Max retries on failure
+  max_retries: 2
+  retry_delay: 1
+
+# OFX Protocol Configuration
+ofx:
+  # Formats to test
+  formats:
+    - "sgml"  # OFX 1.x
+    - "xml"   # OFX 2.x
+
+  # SGML versions to test
+  sgml_versions:
+    - "102"
+    - "103"
+    - "151"
+    - "160"
+
+  # XML versions to test
+  xml_versions:
+    - "200"
+    - "202"
+    - "211"
+    - "220"
+
+  # APPID/APPVER combinations to test
+  app_combinations:
+    - appid: "QWIN"
+      appver: "2700"
+    - appid: "QWIN"
+      appver: "2900"
+    - appid: "Money"
+      appver: "1700"
+    - appid: "OFX"
+      appver: "0100"
+
+# Module-Specific Configuration
+
+# Authentication Testing
+auth:
+  # Default credentials file
+  default_creds_file: "ofxpwn/payloads/default_creds.txt"
+
+  # Username wordlist
+  usernames_file: "ofxpwn/payloads/usernames.txt"
+
+  # Password wordlist
+  passwords_file: "ofxpwn/payloads/passwords.txt"
+
+  # Test username enumeration
+  test_enumeration: true
+
+  # Enumeration timing threshold (seconds)
+  enum_timing_threshold: 0.5
+
+  # Test account lockout
+  test_lockout: false
+  lockout_attempts: 5
+
+# Exploitation Testing
+exploit:
+  # XXE testing
+  xxe_enabled: true
+  xxe_payloads_file: "ofxpwn/payloads/xxe_payloads.txt"
+
+  # SQL injection
+  sqli_enabled: true
+  sqli_payloads_file: "ofxpwn/payloads/sqli_payloads.txt"
+
+  # XSS testing
+  xss_enabled: true
+  xss_payloads_file: "ofxpwn/payloads/xss_payloads.txt"
+
+  # LDAP injection
+  ldap_enabled: true
+
+# Fuzzing Configuration
+fuzz:
+  # Protocol fuzzing
+  protocol_enabled: true
+
+  # Field overflow testing
+  field_overflow_enabled: true
+  max_field_size: 100000  # bytes
+
+  # Encoding attacks
+  encoding_enabled: true
+
+# Parameter Fuzzing (auth/param_fuzzer module)
+fuzzing:
+  # Maximum requests to send during parameter fuzzing
+  max_requests: 1000
+
+  # Maximum concurrent threads for fuzzing
+  max_threads: 20
+
+# Reconnaissance
+recon:
+  # Test unauthenticated profile request
+  test_unauth_profrq: true
+
+  # Fingerprint server
+  fingerprint_enabled: true
+
+  # Version enumeration
+  version_enum_enabled: true
+
+# Infrastructure Testing
+infra:
+  # SSL/TLS testing
+  ssl_enabled: true
+
+  # HTTP headers analysis
+  headers_enabled: true
+
+  # Directory enumeration
+  dir_enum_enabled: true
+  dir_wordlist: "ofxpwn/payloads/directories.txt"
+
+  # HTTP methods testing
+  methods_enabled: true

@@ -1,0 +1,40 @@
+# Default OFX Credentials
+# Format: username:password
+
+# Common defaults
+admin:admin
+admin:password
+administrator:administrator
+test:test
+test:password
+demo:demo
+guest:guest
+root:root
+sa:sa
+
+# Financial software defaults
+quicken:quicken
+quickbooks:quickbooks
+ofx:ofx
+ofxadmin:ofxadmin
+
+# Service accounts
+support:support
+service:service
+dbadmin:dbadmin
+sysadmin:sysadmin
+
+# Test accounts
+testuser:testpass
+testuser1:testpass1
+pentest:pentest
+pentester:pentester
+audit:audit
+compliance:compliance
+security:security
+
+# Empty password attempts
+admin:
+root:
+test:
+guest:

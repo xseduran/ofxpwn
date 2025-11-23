@@ -1,0 +1,40 @@
+# OFXpwn Dependencies
+
+# HTTP Client
+requests>=2.31.0
+urllib3>=2.0.0
+
+# YAML Configuration
+PyYAML>=6.0
+
+# CLI Interface
+click>=8.1.0
+colorama>=0.4.6
+
+# Logging & Output
+termcolor>=2.3.0
+rich>=13.0.0
+
+# XML/HTML Parsing
+lxml>=4.9.0
+beautifulsoup4>=4.12.0
+
+# Concurrent Processing
+concurrent-futures>=3.1.1; python_version < '3.2'
+
+# Progress Bars
+tqdm>=4.66.0
+
+# Data Validation
+pydantic>=2.0.0
+
+# Testing (development only)
+pytest>=7.4.0
+pytest-cov>=4.1.0
+black>=23.0.0
+flake8>=6.1.0
+mypy>=1.5.0
+
+# Documentation (development only)
+mkdocs>=1.5.0
+mkdocs-material>=9.4.0
