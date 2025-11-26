@@ -9,6 +9,7 @@ from .default_creds import DefaultCredsModule
 from .injection import InjectionModule
 from .bruteforce import BruteforceModule
 from .param_fuzzer import ParamFuzzerModule
+from .rate_limiting import RateLimitingModule
 
 __all__ = [
     'LoginModule',
@@ -16,4 +17,5 @@ __all__ = [
     'InjectionModule',
     'BruteforceModule',
     'ParamFuzzerModule',
+    'RateLimitingModule',
 ]

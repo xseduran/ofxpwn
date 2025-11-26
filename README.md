@@ -37,6 +37,7 @@ OFX is a unified specification for the electronic exchange of financial data bet
 - SQL/LDAP injection testing
 - Username enumeration
 - Parameter fuzzing (CLIENTUID, FID, ORG, APPID/APPVER)
+- Rate limiting and account lockout detection
 - Custom credential lists
 
 **Protocol Security**
@@ -48,10 +49,12 @@ OFX is a unified specification for the electronic exchange of financial data bet
 **Reconnaissance**
 - Version fingerprinting
 - Capability discovery (PROFRQ)
+- Account enumeration (ACCTINFORQ)
 - Server enumeration
 - Technology detection
 
 **Exploitation**
+- IDOR (Insecure Direct Object Reference) testing
 - SQL injection
 - XSS testing
 - Command injection
@@ -149,7 +152,8 @@ OFXpwn is organized into five categories of security tests:
 | `auth/default_creds` | Test common default credentials |
 | `auth/injection` | SQL/LDAP injection in authentication fields |
 | `auth/bruteforce` | Credential brute-force with wordlists |
-| `auth/param_fuzzer` | **NEW** Systematically fuzz auth parameters (CLIENTUID, FID, ORG, APPID/APPVER) |
+| `auth/param_fuzzer` | Systematically fuzz auth parameters (CLIENTUID, FID, ORG, APPID/APPVER) |
+| `auth/rate_limiting` | **NEW** Test for rate limiting, account lockout, and brute force protection |
 
 ### Reconnaissance (`recon/`)
 
@@ -157,12 +161,14 @@ OFXpwn is organized into five categories of security tests:
 |--------|-------------|
 | `recon/fingerprint` | Server version detection and OFX version enumeration |
 | `recon/profile` | Unauthenticated profile information disclosure (PROFRQ) |
+| `recon/accounts` | **NEW** Enumerate accessible accounts (ACCTINFORQ) |
 
 ### Exploitation (`exploit/`)
 
 | Module | Description |
 |--------|-------------|
 | `exploit/xxe` | XML External Entity (XXE) vulnerability testing |
+| `exploit/idor` | **NEW** IDOR testing via account ID manipulation and access control bypass |
 
 ### Fuzzing (`fuzz/`)
 
